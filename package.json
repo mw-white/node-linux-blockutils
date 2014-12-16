@@ -1,0 +1,26 @@
+{
+  "name": "linux-blockutils",
+  "version": "0.1.0",
+  "description": "Retrieve information on available block devices in Linux",
+  "main": "blockutils.js",
+  "scripts": {
+    "test": "mocha tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mw-white/node-linux-blockutils.git"
+  },
+  "keywords": [
+    "linux",
+    "block",
+    "disk",
+    "lsblk"
+  ],
+  "devDependencies": {
+    "mocha": "",
+    "should": ""
+  },
+  "author": "Matt White <m.w.white@gmail.com>",
+  "license": "MIT"
+}
+
