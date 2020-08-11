@@ -1,6 +1,6 @@
 {
   "name": "linux-blockutils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Retrieve information on available block devices in Linux",
   "main": "blockutils.js",
   "scripts": {
@@ -23,4 +23,3 @@
   "author": "Matt White <m.w.white@gmail.com>",
   "license": "MIT"
 }
-
