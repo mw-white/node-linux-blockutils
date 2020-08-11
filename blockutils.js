@@ -1,5 +1,5 @@
 var fs = require('fs');
-var exec = require('child_process').exec;
+var execFile = require('child_process').execFile;
 /**
  * blockutils 
  *
@@ -36,23 +36,23 @@ exports.getBlockInfo = function(options,callback) {
   // be able to add partitions to the drive
   var devMap = {};
 
+  var cmdArgs = ["-bPo", "NAME,KNAME,FSTYPE,LABEL,UUID,RO,RM,MODEL,SIZE,STATE,TYPE" ];
+
   if (options.ignoredev) {
     var ignoreexp = new RegExp(options.ignoredev);
   }
 
   // Are we ignoring any dev majors?
-  var ignoremajor = "";
   if (options.ignoremajor && (options.ignoremajor.length>0)) {
-    ignoremajor = " --exclude " + options.ignoremajor.join();
+    cmdArgs.push("--exclude");
+    cmdArgs.push(options.ignoremajor);
   }
 
   // Build the command line
-  var cmd = (options.lsblk?options.lsblk:"/bin/lsblk") + 
-      " -bPo NAME,KNAME,FSTYPE,LABEL,UUID,RO,RM,MODEL,SIZE,STATE,TYPE" +
-      ignoremajor;
+  var cmd = options.lsblk?options.lsblk:"/bin/lsblk"
 
   // Run it
-  var aProc = exec(cmd, function(error, stdout, stderr) {
+  var aProc = execFile(cmd, cmdArgs, function(error, stdout, stderr) {
     if (error !== null) {
       // Something went wrong.
       callback(error,null);
